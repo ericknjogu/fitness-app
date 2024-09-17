@@ -50,7 +50,7 @@ const HeroBanner = () => {
         }}
         fontSize={"200px"}
       >
-        Exercise
+        Fitness
       </Typography>
       <img
         src={HeroBannerImage}
