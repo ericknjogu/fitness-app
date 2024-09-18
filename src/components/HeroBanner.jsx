@@ -29,7 +29,7 @@ const HeroBanner = () => {
       <Typography
         fontSize={"22px"}
         lineHeight={"35px"}
-        mb={4}
+        mb={5}
       >
         Checkout the most Effective exercises
       </Typography>
@@ -49,6 +49,7 @@ const HeroBanner = () => {
           display: { lg: "block", xs: "none" },
         }}
         fontSize={"200px"}
+        mt={4}
       >
         Fitness
       </Typography>

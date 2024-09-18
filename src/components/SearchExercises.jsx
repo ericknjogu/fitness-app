@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, TextField, Button, Stack, Typography } from "@mui/material";
-import { fetchData, excersciseOptions } from "../utils/fetchData";
+import { fetchData, exercisesOptions } from "../utils/fetchData";
 import HorizontalScrollbar from "./HorizontalScrollbar";
 
 const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
@@ -12,7 +12,7 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
     const fetchExercisesData = async () => {
       const bodyPartsData = await fetchData(
         "https://exercisedb.p.rapidapi.com/exercises/bodyPartList",
-        excersciseOptions
+        exercisesOptions
       );
 
       setBodyParts(["all", ...bodyPartsData]);
@@ -22,23 +22,29 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
 
   const handleSearch = async () => {
     if (search) {
-      const exercisesData = await fetchData(
-        "https://exercisedb.p.rapidapi.com/exercises",
-        excersciseOptions
-      );
+      try {
+        const exercisesData = await fetchData(
+          "https://exercisedb.p.rapidapi.com/exercises",
+          exercisesOptions
+        );
 
-      const searchedExercises = exercisesData.filter(
-        (exercise) =>
-          exercise.name.toLowerCase().includes(search) ||
-          exercise.target.toLowerCase().includes(search) ||
-          exercise.equipment.toLowerCase().includes(search) ||
-          exercise.bodyPart.toLowerCase().includes(search)
-      );
+        const lowerCaseSearch = search.toLowerCase();
+        const searchedExercises = exercisesData.filter(
+          (exercise) =>
+            exercise.name.toLowerCase().includes(lowerCaseSearch) ||
+            exercise.target.toLowerCase().includes(lowerCaseSearch) ||
+            exercise.equipment.toLowerCase().includes(lowerCaseSearch) ||
+            exercise.bodyPart.toLowerCase().includes(lowerCaseSearch)
+        );
 
-      setSearch("");
-      setExercises(searchedExercises);
+        setSearch("");
+        setExercises(searchedExercises);
+      } catch (error) {
+        console.error("Error fetching exercises:", error);
+      }
     }
   };
+
   return (
     <Stack
       alignItems={"center"}
