@@ -97,7 +97,13 @@ const SearchExercises = ({
             position: "absolute",
             right: "0",
           }}
-          onClick={handleSearch}
+          onClick={() => {
+            handleSearch();
+            {
+              search.length > 0 &&
+                window.scrollTo({ top: 1800, left: "100", behavior: "smooth" });
+            }
+          }}
         >
           Search
         </Button>
