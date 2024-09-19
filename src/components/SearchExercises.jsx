@@ -3,9 +3,13 @@ import { Box, TextField, Button, Stack, Typography } from "@mui/material";
 import { fetchData, exercisesOptions } from "../utils/fetchData";
 import HorizontalScrollbar from "./HorizontalScrollbar";
 
-const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
-  const [search, setSearch] = useState("");
-
+const SearchExercises = ({
+  setExercises,
+  bodyPart,
+  setBodyPart,
+  search,
+  setSearch,
+}) => {
   const [bodyParts, setBodyParts] = useState([]);
 
   useEffect(() => {
@@ -37,7 +41,7 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
             exercise.bodyPart.toLowerCase().includes(lowerCaseSearch)
         );
 
-        setSearch("");
+        setSearch(search);
         setExercises(searchedExercises);
       } catch (error) {
         console.error("Error fetching exercises:", error);
@@ -103,6 +107,7 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
           data={bodyParts}
           bodyPart={bodyPart}
           setBodyPart={setBodyPart}
+          search={search}
         />
       </Box>
     </Stack>

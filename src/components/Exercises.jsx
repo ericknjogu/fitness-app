@@ -5,23 +5,44 @@ import { Box, Stack, Typography } from "@mui/material";
 import { fetchData, exercisesOptions } from "../utils/fetchData";
 import ExerciseCard from "./ExerciseCard";
 
-const Exercises = ({ exercises, bodyPart, setExercises }) => {
+const Exercises = ({ search, exercises, bodyPart, setExercises }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const exercisesPerPage = 9;
 
   const indexOfLastExercise = currentPage * exercisesPerPage; // 9 * 1 = 9
   const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage; // 9 - 9 = 0
-  const currentExercises = exercises.slice(
-    indexOfFirstExercise,
-    indexOfLastExercise
-  );
-
+  const currentExercises = Array.isArray(exercises)
+    ? exercises.slice(indexOfFirstExercise, indexOfLastExercise)
+    : [];
   const paginate = (e, value) => {
     setCurrentPage(value);
 
     window.scrollTo({ top: 1800, behavior: "smooth" });
   };
+
+  useEffect(() => {
+    const fetchExercisesData = async () => {
+      let exercisesData = [];
+      const selectedBodyPart = bodyPart || "all";
+
+      if (bodyPart === "all") {
+        exercisesData = await fetchData(
+          "https://exercisedb.p.rapidapi.com/exercises?limit=100",
+          exercisesOptions
+        );
+      } else {
+        exercisesData = await fetchData(
+          `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${selectedBodyPart}?limit=100&offset=0`,
+          exercisesOptions
+        );
+      }
+
+      setExercises(exercisesData);
+    };
+
+    fetchExercisesData();
+  }, [bodyPart]);
 
   return (
     <Box
@@ -30,12 +51,22 @@ const Exercises = ({ exercises, bodyPart, setExercises }) => {
       mt="50px"
       p="20px"
     >
-      <Typography
-        variant="h4"
-        mb={"46px"}
-      >
-        Showing results
-      </Typography>
+      {search.length > 0 ? (
+        <Typography
+          variant="h4"
+          mb={"46px"}
+        >
+          Showing search results for {search} Excercises
+        </Typography>
+      ) : (
+        <Typography
+          variant="h4"
+          mb={"46px"}
+        >
+          Showing results for {bodyPart} Excercises
+        </Typography>
+      )}
+
       <Stack
         direction="row"
         sx={{ gap: { lg: "110px", xs: "50px" } }}
