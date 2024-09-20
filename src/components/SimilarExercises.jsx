@@ -5,7 +5,7 @@ import Loader from "./Loader";
 
 const SimilarExercises = ({ targetVideos, equipmentExercises }) => {
   return (
-    <Box sx={{ mt: { lg: "100px", xs: "0" } }}>
+    <Box sx={{ mt: { lg: "20px", xs: "0" } }}>
       <Typography
         variant="h4"
         mb={6}
