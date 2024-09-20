@@ -37,11 +37,12 @@ const Detail = ({ exerciseDetail }) => {
         <Typography
           variant="h3"
           fontWeight={"bold"}
+          textTransform={"capitalize"}
         >
           {name}
         </Typography>
         <Typography variant="h6">
-          Exercises keep you strong.
+          Exercises keep you strong. {""}
           {name} is a great way to target your {target}. It will help improve
           your mood and strength
         </Typography>
