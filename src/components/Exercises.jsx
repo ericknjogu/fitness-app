@@ -56,14 +56,22 @@ const Exercises = ({ search, exercises, bodyPart, setExercises }) => {
           variant="h4"
           mb={"46px"}
         >
-          Showing search results for {search} Excercises
+          Showing search results for{" "}
+          <span style={{ color: "red", textTransform: "capitalize" }}>
+            {search}
+          </span>{" "}
+          Excercises
         </Typography>
       ) : (
         <Typography
           variant="h4"
           mb={"46px"}
         >
-          Showing results for {bodyPart} Excercises
+          Showing results for{" "}
+          <span style={{ color: "red", textTransform: "capitalize" }}>
+            {bodyPart}
+          </span>{" "}
+          Excercises
         </Typography>
       )}
 
