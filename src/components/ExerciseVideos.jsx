@@ -30,7 +30,7 @@ const ExerciseVideos = ({ exerciseVideos, name }) => {
           <a
             key={index}
             className="exercise-video"
-            href={`https://www.youtube.com/watch?v/${item.video.videoId}`}
+            href={`https://www.youtube.com/watch?v=${item.video.videoId}`}
             target="_blank"
             rel="noreferrer"
           >
@@ -38,6 +38,23 @@ const ExerciseVideos = ({ exerciseVideos, name }) => {
               src={item.video.thumbnails[0].url}
               alt="item.video.title"
             />
+            <Box>
+              <Typography
+                sx={{
+                  fontSize: { lg: "28px", xs: "18px" },
+                  fontWeight: "bold",
+                  color: "#000",
+                }}
+              >
+                {item.video.title}
+              </Typography>
+              <Typography
+                fontSize={"14px"}
+                color={"#000"}
+              >
+                {item.video.channelName}
+              </Typography>
+            </Box>
           </a>
         ))}
       </Stack>
