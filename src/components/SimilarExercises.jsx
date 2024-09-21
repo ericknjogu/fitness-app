@@ -15,6 +15,7 @@ const SimilarExercises = ({ targetVideos, equipmentExercises }) => {
       <Stack
         direction="row"
         sx={{ p: "2", position: "relative", mb: "30px" }}
+        onclick={window.scrollTo({ top: 0, behavior: "smooth" })}
       >
         {targetVideos.length ? (
           <HorizontalScrollbar data={targetVideos} />
@@ -31,6 +32,7 @@ const SimilarExercises = ({ targetVideos, equipmentExercises }) => {
       <Stack
         direction="row"
         sx={{ p: "2", position: "relative" }}
+        onclick={window.scrollTo({ top: 0, behavior: "smooth" })}
       >
         {targetVideos.length ? (
           <HorizontalScrollbar data={equipmentExercises} />

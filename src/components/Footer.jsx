@@ -26,7 +26,8 @@ const Footer = () => {
           pb={"30px"}
           mt={"10px"}
         >
-          © 2024 Fitness App. All rights reserved. Made by Erick Njogu
+          © 2024 <a href="/">Fitness App</a> . All rights reserved. Made by
+          Erick Njogu
         </Typography>
       </Stack>
     </Box>
